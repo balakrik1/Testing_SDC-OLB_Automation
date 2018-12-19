@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRun" project="ACES_Maven_Latest" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="TestRunner.TestRun" time="0.001">
+    <testcase name="initializationError" classname="TestRunner.TestRun" time="0.001">
+      <error>cucumber.runtime.CucumberException: Error parsing feature file Sprint1/a1User Story 1 Createclass.feature&#13;
+	at cucumber.runtime.FeatureBuilder.parse(FeatureBuilder.java:133)&#13;
+	at cucumber.runtime.model.CucumberFeature.loadFromFeaturePath(CucumberFeature.java:104)&#13;
+	at cucumber.runtime.model.CucumberFeature.load(CucumberFeature.java:54)&#13;
+	at cucumber.runtime.model.CucumberFeature.load(CucumberFeature.java:34)&#13;
+	at cucumber.runtime.RuntimeOptions.cucumberFeatures(RuntimeOptions.java:239)&#13;
+	at cucumber.api.junit.Cucumber.&lt;init&gt;(Cucumber.java:62)&#13;
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)&#13;
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(Unknown Source)&#13;
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(Unknown Source)&#13;
+	at java.lang.reflect.Constructor.newInstance(Unknown Source)&#13;
+	at org.junit.internal.builders.AnnotatedBuilder.buildRunner(AnnotatedBuilder.java:104)&#13;
+	at org.junit.internal.builders.AnnotatedBuilder.runnerForClass(AnnotatedBuilder.java:86)&#13;
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)&#13;
+	at org.junit.internal.builders.AllDefaultPossibilitiesBuilder.runnerForClass(AllDefaultPossibilitiesBuilder.java:26)&#13;
+	at org.junit.runners.model.RunnerBuilder.safeRunnerForClass(RunnerBuilder.java:59)&#13;
+	at org.junit.internal.requests.ClassRequest.getRunner(ClassRequest.java:33)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.createUnfilteredTest(JUnit4TestLoader.java:87)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.createTest(JUnit4TestLoader.java:73)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestLoader.loadTests(JUnit4TestLoader.java:46)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:522)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:760)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:460)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:206)&#13;
+Caused by: gherkin.lexer.LexingError: Lexing error on line 368: 'E  | Teacher Admin1 |
+
+  Scenario Outline: 1 TC016 and TC017 Create class by adding teacher and learner By OUP Admin
+    Given User is on login screen
+    When User provides userRole '&lt;UserRole&gt;' to get username and Password as "Oxford1"
+    And User logged into the application
+    And Verify Account widget icon is present
+    And Click on OUP organisation
+    And Search the Institution and navigate to the same institution
+    And Click on My class
+    And Close cookie banner
+    And Click on Add class
+    And Enter class name "Classc"
+    And Click Next
+    And ADD Teacher page and click Next
+    And Add Student page and click Next
+    Then User is in Review Page
+    Then User selects number of seat
+    Then click on Final Add class
+    Then See the successful message
+    Then click Done after message
+    And Select class and navigate to the class "classc"
+    Then Check the class has been created or not
+    And Verify Account widget icon is present
+    And Click on sign out
+    Then Verify that user is on sign out page
+    Then Close browser
+
+    Examples: 
+      | UserRole  |
+      | OUP Admin |
+
+  #(Multiple teacher added to Class)
+  #==============================================================================================================&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+  Scenario Outline: TC016 and TC017 Create class by adding multiple teacher and multiple learner
+    #TC016:Verify that the user are able to select teachers to a new class during class creation from the organization
+    #TC017:Verify that the user able to add a single teacher from the teachers list for new class
+    Given User is on login screen
+    When User provides userRole '&lt;UserRole&gt;' to get username and Password as "Oxford@123"
+    And User logged into the application
+    And Click My School
+    And Close cookie banner
+    And Click on My class
+    And Click on Add class
+    And Enter class name "Classc"
+    And Click Next
+    And Select multiple teachers
+    And Click Next
+    And Select multiple Students
+    And Click Next
+    And click on Final Add class
+    Then See the successful message
+    Then click Done after message
+    And Select class and navigate to the class "classc"
+    Then Check the class has been created or not
+    And Verify Account widget icon is present
+    And Click on sign out
+    Then Verify that user is on sign out page
+    Then Close browser
+
+    Examples: 
+      | UserRole       |
+      | org Admin1     |
+      | Teacher1       |
+      | Teacher Admin1 |
+
+  Scenario Outline: TC016 and TC017 Create class by adding multiple teacher and
+    multiple learner By OUP Admin
+
+    Given User is on login screen
+    When User provides userRole '&lt;UserRole&gt;' to get username and Password as "Oxford1"
+    And User logged into the application
+    And Verify Account widget icon is present
+    And Click on OUP organisation
+    And Search the Institution and navigate to the same institution
+    And Click on My class
+    And Close cookie banner
+    And Click on Add class
+    And Enter class name "Classc"
+    And Click Next
+    And Select multiple teachers
+    And Click Next
+    And Select multiple Students
+    And Click Next
+    And click on Final Add class
+    Then See the successful message
+    Then click Done after message
+    And Select class and navigate to the class "classc"
+    Then Check the class has been created or not
+    And Verify Account widget icon is present
+    And Click on sign out
+    Then Verify that user is on sign out page
+    Then Close browser
+
+    Examples: 
+      | UserRole  |
+      | OUP Admin |
+
+  #=============================================================================================================================&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;&gt;
+  Scenario Outline: TC002 Duplicate class name
+    Given User is on login screen
+    When User provides userRole '&lt;UserRole&gt;' to get username and Password as "Oxford@123"
+    And User logged into the application
+    And Click My School
+    And Close cookie banner
+    And Click on My class
+    And Click on Add class
+    And Enter the  duplicate className
+    And Verify the Duplicate name Error is provided "This class name has already been used. Please enter a different name for your class."
+    And Click close
+    And Verify Account widget icon is present
+    And Click on sign out
+    Then Verify that user is on sign out page
+    Then Close browser
+
+    Examples: 
+      | UserRole       |
+      | org Admin1     |
+      | Teacher1       |
+      | Teacher Admin1 |
+
+  Scenario Outline: TC002 Duplicate class name oup roles
+    Given User is on login screen
+    When User provides userRole '&lt;UserRole&gt;' to get username and Password as "Oxford1"
+    And User logged into the application
+    And Verify Account widget icon is present
+    And Click on OUP organisation
+    And Search the Institution and navigate to the same institution
+    And Click on My class
+    And Close cookie banner
+    And Click on Add class
+    And Enter the  duplicate className
+    And Verify the Duplicate name Error is provided "This class name has already been used. Please enter a different name for your class."
+    And Click close
+    And Verify Account widget icon is present
+    And Click on sign out
+    Then Verify that user is on sign out page
+    Then Close browser
+
+    Examples: 
+      | UserRole  |
+      | OUP Admin |
+
+%_FEATURE_END_%'. See http://wiki.github.com/cucumber/gherkin/lexingerror for more information.&#13;
+	at gherkin.lexer.En.scan(En.java:872)&#13;
+	at gherkin.lexer.I18nLexer.scan(I18nLexer.java:36)&#13;
+	at gherkin.parser.Parser.parse(Parser.java:62)&#13;
+	at cucumber.runtime.FeatureBuilder.parse(FeatureBuilder.java:131)&#13;
+	... 22 more&#13;
+&#13;
+</error>
+    </testcase>
+  </testsuite>
+</testrun>
