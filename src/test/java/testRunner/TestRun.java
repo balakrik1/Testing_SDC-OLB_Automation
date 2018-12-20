@@ -20,7 +20,7 @@ import cucumber.api.junit.Cucumber;
 		features = "src\\test\\java\\feature",
 		plugin = { "pretty","com.cucumber.listener.ExtentCucumberFormatter:","rerun:/failedScenarios/rerun.txt"}, 
 		monochrome = true,
-		tags= {"@RUN123"},
+		tags= {"@OLBREG"},
 		glue = { "stepDefinition" })
 public class TestRun {
 

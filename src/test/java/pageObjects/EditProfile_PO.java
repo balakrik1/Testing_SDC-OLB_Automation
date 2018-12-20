@@ -79,6 +79,8 @@ public class EditProfile_PO {
 	
 	public static String updatedFirstName;
 	public static String updatedLastName;
+	public static String updatedFirstNameNE;
+	public static String updatedLastNameNE;
 	public static String currentPassword;
 	public static String updateCurrentPassword;
 	public static String userNameToUpdate;
@@ -107,6 +109,52 @@ public class EditProfile_PO {
 			System.out.println(" Error in updating the firstName and LastName\n"+e);
 			
 		}
+	}
+	
+	public void updateFirstNLastNameNE(){
+		
+		GENERIC=new GenericFunctions(driver);
+		try{
+		WebDriverWait objWait=new WebDriverWait(driver, 20);
+		
+		updatedFirstNameNE="اختبار";
+		updatedLastNameNE="اختبار";
+		GENERIC.waitForthePageToLoad(driver);
+		GENERIC.simpleSleep(1000);
+		WebElement FNelement=objWait.until(ExpectedConditions.elementToBeClickable(edit_firstName_textbox));
+		FNelement.clear();
+		FNelement.sendKeys(updatedFirstNameNE);
+		GENERIC.simpleSleep(1000);
+		WebElement LNelement=objWait.until(ExpectedConditions.elementToBeClickable(edit_lastName_textbox));
+		LNelement.clear();
+		LNelement.sendKeys(updatedLastNameNE);
+		GENERIC.simpleSleep(1000);
+		objWait.until(ExpectedConditions.elementToBeClickable(edit_Save_button));
+		edit_Save_button.click();
+	} catch(Exception e){
+		System.out.println(" Error in updating the firstName and LastName\n"+e);
+		
+	}
+}
+	public boolean verifyupdatedFirstNLastNameNE(){
+		boolean flag=false;
+		try{
+			WebDriverWait objWait=new WebDriverWait(driver, 20);
+			GENERIC=new GenericFunctions(driver);
+			objWait.until(ExpectedConditions.elementToBeClickable(save_Done_button));
+			String temp=updatedFirstNameNE+" "+updatedLastNameNE;
+			String updatedName=updatedUserName(temp).getText().trim().toString();
+			String updateMessge=GENERIC.getProperty("MESSAGES", "UPDATE_MESSAGE");
+			String updateMessgaeFromUI=save_confirmation_header.getText().trim().toString();
+			if(updateMessgaeFromUI.contains(updateMessge)) {
+			if(updatedName.equals(temp)) {
+				flag=true;
+			} }
+		} catch(Exception e){
+			flag=false;
+			System.out.println(" Error in updating the firstName and LastName\n"+e);
+		}
+		return flag;
 	}
 	
 	public boolean verifyupdatedFirstNLastName(){
@@ -190,6 +238,27 @@ public class EditProfile_PO {
 			String updatedName=updatedUserName(temp).getText().trim().toString();
 			String updateMessge=GENERIC.getProperty("MESSAGES", "UPDATE_MESSAGE");
 			//String updatedUserName=driver.findElement(By.xpath("(//h5[contains(text(),'"+userNameToUpdate+"')])[2]")).getText().trim().toString();
+			String updateMessgaeFromUI=save_confirmation_header.getText().trim().toString();
+			if(updateMessgaeFromUI.contains(updateMessge)) {
+			if(updatedName.equals(temp)) {
+				flag=true;
+			} }
+		} catch(Exception e){
+			flag=false;
+			System.out.println(" Error in updating the firstName and LastName\n"+e);
+		}
+		return flag;
+	}
+	
+	public boolean verifyupdatedUserNameNE(){
+		boolean flag=false;
+		try{
+			WebDriverWait objWait=new WebDriverWait(driver, 20);
+			GENERIC=new GenericFunctions(driver);
+			objWait.until(ExpectedConditions.elementToBeClickable(save_Done_button));
+			String temp=updatedFirstNameNE+" "+updatedLastNameNE;
+			String updatedName=updatedUserName(temp).getText().trim().toString();
+			String updateMessge=GENERIC.getProperty("MESSAGES", "UPDATE_MESSAGE");
 			String updateMessgaeFromUI=save_confirmation_header.getText().trim().toString();
 			if(updateMessgaeFromUI.contains(updateMessge)) {
 			if(updatedName.equals(temp)) {

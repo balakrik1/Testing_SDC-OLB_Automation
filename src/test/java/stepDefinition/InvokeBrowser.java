@@ -63,7 +63,7 @@ public class InvokeBrowser extends BaseUtil{
 					base.driver = new InternetExplorerDriver(capabilities);
 					base.driver.manage().window().maximize();
 					base.driver.manage().deleteAllCookies();
-					base.driver.get(prop.getProperty("URL"));
+					//base.driver.get(prop.getProperty("URL"));
 				}
 
 				if (result.equalsIgnoreCase("Firefox")) {
@@ -73,7 +73,7 @@ public class InvokeBrowser extends BaseUtil{
 					base.driver = new FirefoxDriver();
 					base.driver.manage().window().maximize();
 					base.driver.manage().deleteAllCookies();
-					base.driver.get(prop.getProperty("URL"));
+					//base.driver.get(prop.getProperty("URL"));
 
 				}  
 				
@@ -83,7 +83,7 @@ public class InvokeBrowser extends BaseUtil{
 					base.driver = new EdgeDriver();
 					base.driver.manage().window().maximize();
 					base.driver.manage().deleteAllCookies();
-					base.driver.get(prop.getProperty("URL"));
+					//base.driver.get(prop.getProperty("URL"));
 
 				}  
 

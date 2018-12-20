@@ -1,6 +1,6 @@
+@OLBREG
 Feature: OLB
 
-@RUN123
   Scenario Outline: Register a OLB user - Non English Characters
     Given user navigates to "<OLB_URL>"
     When user clicks on 'Register' button
@@ -15,7 +15,6 @@ Feature: OLB
     Examples: 
       | OLB_URL | FIRSTNAME | LASTNAME | USERNAME |
       | URL     | NONENG    | NONENG   | OLBUSER  |
-
 
   Scenario Outline: Register a OLB user
     Given user navigates to "<OLB_URL>"
@@ -32,13 +31,13 @@ Feature: OLB
       | OLB_URL | FIRSTNAME | LASTNAME    | USERNAME |
       | URL     | Auto      | TestUserOLB | OLBUSER  |
 
-  @RUNOLB
+
   Scenario Outline: Adding a New book
     Given user navigates to "<OLB_URL>"
     When user is on the homepage after entering the "<USERNAME>" and password
     Then user finds a welcome alert message
-    #When user provides the valid activation code
-    #Then user should be the find the new book added to the collections
+    When user provides the valid activation code for "<OLB_URL>"
+    Then user should be the find the new book added to the collections
     When user launches the book
     Then user should be able to switch pages
     And user closes the book
@@ -61,12 +60,25 @@ Feature: OLB
       | OLB_URL | USERNAME |
       | URL     | OLBUSER  |
 
-  Scenario Outline: Edit Profile
+  Scenario Outline: Edit Profile - English Characters
     Given user navigates to "<OLB_URL>"
     When user is on the homepage after entering the "<USERNAME>" and password
     Then user finds a welcome alert message
     And user updates the firstname and lastname
     And user updates the username and password
+    Then user clicks on 'Sign out' to terminate the session
+    And user closes the browser
+
+    Examples: 
+      | OLB_URL | USERNAME |
+      | URL     | OLBUSER  |
+
+  Scenario Outline: Edit Profile - Non English Characters
+    Given user navigates to "<OLB_URL>"
+    When user is on the homepage after entering the "<USERNAME>" and password
+    Then user finds a welcome alert message
+    And user updates the NE firstname and lastname
+    And user updates the NE username and password
     Then user clicks on 'Sign out' to terminate the session
     And user closes the browser
 
@@ -105,5 +117,5 @@ Feature: OLB
     And user closes the browser
 
     Examples: 
-      | URL    | USERNAME | OLB_URL |
-      | EAC_PP | OLBUSER  | URL     |
+      | URL | USERNAME | OLB_URL |
+      | EAC | OLBUSER  | URL     |

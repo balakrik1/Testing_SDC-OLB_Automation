@@ -36,7 +36,7 @@ public class AddedBook_PO {
 	@FindBy(xpath = "//*[@id='my_iframe']")
 	public WebElement book_iframe_main;
 
-	@FindBy(xpath = "(//li[@title='Save and Close']//div[contains(text(),'Save and Close')])[1]")
+	@FindBy(xpath = "//*[@id='menu-bar-right']/div[@title='Save and Close']")
 	public WebElement book_SaveandCloase_link;
 
 	@FindBy(xpath = "//*[@id='microscope-view']/div[1]/div[3]")
@@ -70,12 +70,14 @@ public class AddedBook_PO {
 			GENERIC.waitForthePageToLoad(driver);
 			GENERIC.simpleSleep(1500);
 			searchBook();
+			GENERIC.simpleSleep(2500);
 			WebDriverWait objWait = new WebDriverWait(driver, 20);
 			Actions hover=new Actions(driver);
 			hover.moveToElement(book_launch_button).build().perform();
 			WebElement book = objWait.until(ExpectedConditions.elementToBeClickable(book_launch_button));
 			hover.moveToElement(book).click().build().perform();
 			GENERIC.waitForthePageToLoad(driver);
+			GENERIC.simpleSleep(6500);
 		} catch (Exception e) {
 			System.out.println("**Error in Launching the book" + e);
 		}
@@ -83,15 +85,18 @@ public class AddedBook_PO {
 
 	public void NavigatePages() {
 		try {
+			
 			GENERIC = new GenericFunctions(driver);
 			GENERIC.waitForthePageToLoad(driver);
-			GENERIC.simpleSleep(1500);
+			GENERIC.waitForthePageToLoad(driver);
+			GENERIC.simpleSleep(6500);
 			getIframe();
 			for (int i = 0; i < 3; i++) {
 				Actions hover=new Actions(driver);
-				hover.moveToElement(book_nextPageNavigate_link).build().perform();
 				WebDriverWait objWait = new WebDriverWait(driver, 20);
 				WebElement pageLink = objWait.until(ExpectedConditions.elementToBeClickable(book_nextPageNavigate_link));
+				hover.moveToElement(book_nextPageNavigate_link).build().perform();
+				GENERIC.simpleSleep(1500);
 				pageLink.click();
 				GENERIC.simpleSleep(2500);
 			}
@@ -102,6 +107,8 @@ public class AddedBook_PO {
 	
 	
 	public void getIframe() {
+		WebDriverWait objWait = new WebDriverWait(driver, 20);
+		objWait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(By.tagName("iframe")));
 	    final List<WebElement> iframes = driver.findElements(By.tagName("iframe"));
 	    for (WebElement iframe : iframes) {
 	        System.out.println(iframe.getAttribute("id"));
@@ -113,8 +120,9 @@ public class AddedBook_PO {
 		try {
 			GENERIC = new GenericFunctions(driver);
 			GENERIC.waitForthePageToLoad(driver);
-			GENERIC.waitForWebElement(driver, book_SaveandCloase_link);
-			GENERIC.simpleSleep(1500);
+			//GENERIC.waitForWebElement(driver, book_SaveandCloase_link);
+			//WebElement ele1=driver.findElement(By.xpath("//*[@id='menu-bar-right']/div[@title='Save and Close']"));
+			GENERIC.simpleSleep(2500);
 			WebDriverWait objWait = new WebDriverWait(driver, 20);
 			WebElement ele=objWait.until(ExpectedConditions.elementToBeClickable(book_SaveandCloase_link));
 			ele.click();

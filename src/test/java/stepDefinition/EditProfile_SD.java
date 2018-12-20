@@ -67,6 +67,25 @@ public class EditProfile_SD  extends BaseUtil{
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
 		 GENERIC.clickByWebElement(EDIT.save_Done_button);
 	}
+	
+	@Then("^user updates the NE firstname and lastname$")
+	public void user_updates_the_NE_firstname_and_lastname() throws Throwable {
+		 GENERIC=new GenericFunctions(base.driver);
+		 OLB_HOME=new OLBHome_PO(base.driver);
+		 LOGIN=new SigningINandOUT_PO(base.driver);
+		 USER_HOME=new UserHome_PO(base.driver);
+		 ACTIVATIIONCODE=new ActivationCode_PO(base.driver);
+		 EDIT=new EditProfile_PO(base.driver);
+		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
+		 LOGIN.clickEditProfile();
+		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
+		 EDIT.updateFirstNLastNameNE();
+		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
+		 Assert.assertTrue(EDIT.verifyupdatedFirstNLastNameNE());
+		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
+		 GENERIC.clickByWebElement(EDIT.save_Done_button);
+	}
+
 
 	@Then("^user updates the username and password$")
 	public void user_updates_the_username_and_password() throws Throwable {
@@ -81,6 +100,23 @@ public class EditProfile_SD  extends BaseUtil{
 		 EDIT.updateUserNameNPassword();
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
 		 Assert.assertTrue( EDIT.verifyupdatedUserName());
+		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
+		 GENERIC.clickByWebElement(EDIT.save_Done_button);
+	}
+	
+	@Then("^user updates the NE username and password$")
+	public void user_updates_the_NE_username_and_password() throws Throwable {
+		 GENERIC=new GenericFunctions(base.driver);
+		 OLB_HOME=new OLBHome_PO(base.driver);
+		 LOGIN=new SigningINandOUT_PO(base.driver);
+		 USER_HOME=new UserHome_PO(base.driver);
+		 ACTIVATIIONCODE=new ActivationCode_PO(base.driver);
+		 EDIT=new EditProfile_PO(base.driver);
+		 LOGIN.clickEditProfile();
+		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
+		 EDIT.updateUserNameNPassword();
+		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
+		 Assert.assertTrue( EDIT.verifyupdatedUserNameNE());
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
 		 GENERIC.clickByWebElement(EDIT.save_Done_button);
 	}

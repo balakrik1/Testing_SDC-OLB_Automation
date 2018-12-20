@@ -46,15 +46,19 @@ public class LegacyUser_SD extends BaseUtil {
 		 EAC=new EAC_PO(base.driver);
 		 LOGIN.clickSignInLink();
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
-		 if(env.contains("PP")) {
+		 env=base.driver.getCurrentUrl();
+		 if(env.contains("preprod")) {
 			 username=GENERIC.getProperty("EAC", "EAC_PP_USERNAME");
 			 password=GENERIC.getProperty("EAC", "EAC_PP_PASSWORD");
-		 } else if(env.contains("TEST")) {
+		 } else if(env.contains("test")) {
 			 username=GENERIC.getProperty("EAC", "EAC_TEST_USERNAME");
 			 password=GENERIC.getProperty("EAC", "EAC_TEST_PASSWORD");
-		 } else if(env.contains("UAT")) {
+		 } else if(env.contains("uat")) {
 			 username=GENERIC.getProperty("EAC", "EAC_UAT_USERNAME");
 			 password=GENERIC.getProperty("EAC", "EAC_UAT_PASSWORD");
+		 } else if(env.contains("dev")) {
+			 username=GENERIC.getProperty("EAC", "EAC_DEV_USERNAME");
+			 password=GENERIC.getProperty("EAC", "EAC_DEV_PASSWORD");
 		 }
 		 GENERIC.enterTextByWebElement(EAC.EAC_Username_textbox, username);
 		 GENERIC.simpleSleep(1000);

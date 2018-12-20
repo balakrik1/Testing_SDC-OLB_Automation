@@ -114,11 +114,21 @@ public class ActivationCode_PO {
 	}
 	
 	
-	public void addNewBook() {
+	public void addNewBook(String url) {
+		String activationCode=null;
+		url=driver.getCurrentUrl();
 		try {
 			GENERIC=new GenericFunctions(driver);
 			String codeCounterValue=GENERIC.getProperty("CODE_COUNTER", "CODE");
-			String activationCode=GENERIC.getProperty("ACTIVATION_CODES", codeCounterValue);
+			if(url.contains("preprod")) {
+				 activationCode=GENERIC.getProperty("ACTIVATION_CODES_PP", codeCounterValue);
+			}if(url.contains("uat")) {
+				 activationCode=GENERIC.getProperty("ACTIVATION_CODES_UAT", codeCounterValue);
+			}if(url.contains("test")) {
+				 activationCode=GENERIC.getProperty("ACTIVATION_CODES_TEST", codeCounterValue);
+			}if(url.contains("dev")) {
+				 activationCode=GENERIC.getProperty("ACTIVATION_CODES_DEV", codeCounterValue);
+			}
 			int temp=Integer.parseInt(codeCounterValue)+1;
 			String updatedCounterValue=String.valueOf(temp);
 			GENERIC.writeDateinCODECOUNTER("CODE_COUNTER", "CODE", updatedCounterValue);

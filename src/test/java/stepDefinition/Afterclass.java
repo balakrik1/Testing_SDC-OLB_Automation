@@ -21,11 +21,20 @@ public class Afterclass extends BaseUtil {
 
 	@After
 	public void closebrowser(Scenario scenario) {
+		String currenturl=driver.getCurrentUrl();
 		try {
 			if (scenario.isFailed()) {
 				scenario.embed(((TakesScreenshot) base.driver).getScreenshotAs(OutputType.BYTES), "image/png");
 				Thread.sleep(2000);
-				base.driver.get("https://preprod.secure.account.oup.com/idp/profile/Logout");
+				if(currenturl.contains("preprod")) {
+					base.driver.get("https://preprod.secure.account.oup.com/idp/profile/Logout");
+				} if(currenturl.contains("dev")) {
+					base.driver.get("https://dev.secure.account.oup.com/idp/profile/Logout");
+				} if(currenturl.contains("uat")) {
+					base.driver.get("https://uat.secure.account.oup.com/idp/profile/Logout");
+				} if(currenturl.contains("test")) {
+					base.driver.get("https://test.secure.account.oup.com/idp/profile/Logout");
+				}
 			}
 			base.driver.manage().deleteAllCookies();
 			base.driver.quit();

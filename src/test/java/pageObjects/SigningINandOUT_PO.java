@@ -121,6 +121,7 @@ public class SigningINandOUT_PO {
 	}
 	
 	public void signOut() throws IOException, Exception {
+		String currenturl=null;
 		try {
 			GENERIC= new GenericFunctions(driver);
 			GENERIC.simpleSleep(1000);
@@ -130,7 +131,17 @@ public class SigningINandOUT_PO {
 			GENERIC.waitForWebElement(driver, ACCOUNTWIDGET_SIGNOUT_LINK);
 			GENERIC.clickByWebElement(ACCOUNTWIDGET_SIGNOUT_LINK);
 		} catch(Exception e) {
-			driver.get("https://preprod.secure.account.oup.com/idp/profile/Logout");
+			currenturl=driver.getCurrentUrl();
+			if(currenturl.contains("preprod")) {
+				driver.get("https://preprod.secure.account.oup.com/idp/profile/Logout");
+			} if(currenturl.contains("dev")) {
+				driver.get("https://dev.secure.account.oup.com/idp/profile/Logout");
+			} if(currenturl.contains("uat")) {
+				driver.get("https://uat.secure.account.oup.com/idp/profile/Logout");
+			} if(currenturl.contains("test")) {
+				driver.get("https://test.secure.account.oup.com/idp/profile/Logout");
+			}
+			
 			System.err.println(" ** Error in Signing Out from the browser\n"+e);
 		}
 	}

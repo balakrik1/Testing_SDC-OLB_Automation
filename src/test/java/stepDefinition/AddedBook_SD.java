@@ -33,8 +33,8 @@ public class AddedBook_SD extends BaseUtil {
 	AddedBook_PO		ADD;
 	ScreenShotTaken  	SCREENSHOT = new ScreenShotTaken(base);
 	
-	@When("^user provides the valid activation code$")
-	public void user_provides_the_valid_activation_code() throws Throwable {
+	@When("^user provides the valid activation code for \"([^\"]*)\"$")
+	public void user_provides_the_valid_activation_code(String url) throws Throwable {
 		 GENERIC=new GenericFunctions(base.driver);
 		 OLB_HOME=new OLBHome_PO(base.driver);
 		 LOGIN=new SigningINandOUT_PO(base.driver);
@@ -44,7 +44,7 @@ public class AddedBook_SD extends BaseUtil {
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
 		 ACTIVATIIONCODE.clickAddBookLink();
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
-		 ACTIVATIIONCODE.addNewBook();
+		 ACTIVATIIONCODE.addNewBook(url);
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
 	}
 

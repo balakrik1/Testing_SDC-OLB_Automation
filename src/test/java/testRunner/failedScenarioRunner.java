@@ -21,7 +21,7 @@ import cucumber.api.CucumberOptions;
 
 @ExtendedCucumberOptions(
 		retryCount=1,
-        includeCoverageTags={"@CreateClass"}
+        includeCoverageTags={"@OLBREG"}
 		)
 
 @CucumberOptions(
@@ -29,7 +29,7 @@ import cucumber.api.CucumberOptions;
 		features = "src\\test\\java\\feature",
 		plugin = { "pretty","com.cucumber.listener.ExtentCucumberFormatter:","rerun:/failedScenarios/rerun.txt"}, 
 		monochrome = true,
-		tags={"@CreateClass"},
+		tags={"@OLBREG"},
 		glue = { "stepDefinition" }
 		)
 	

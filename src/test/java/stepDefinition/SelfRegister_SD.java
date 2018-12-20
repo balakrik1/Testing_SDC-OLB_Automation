@@ -40,7 +40,7 @@ public class SelfRegister_SD  extends BaseUtil {
 	public void user_navigates_to(String url) throws Throwable {
 	   GENERIC=new GenericFunctions(base.driver);
 	   OLB_HOME=new OLBHome_PO(base.driver);
-	   String navigateURL=GENERIC.getProperty("ENVIRONMENT", url);
+	   String navigateURL=GENERIC.getProperty("Browser", url);
 	   Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
 	   base.driver.get(navigateURL);
 	   Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
@@ -51,7 +51,7 @@ public class SelfRegister_SD  extends BaseUtil {
 		 GENERIC=new GenericFunctions(base.driver);
 		 OLB_HOME=new OLBHome_PO(base.driver);
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
-		 try {
+		/* try {
 			 JavascriptExecutor jse=(JavascriptExecutor)base.driver;
 			 jse.executeScript("arguments[0].style.border='2px solid red'", OLB_HOME.HOME_REGISTER_BUTTON);
 			 GENERIC.simpleSleep(1000);
@@ -59,7 +59,7 @@ public class SelfRegister_SD  extends BaseUtil {
 			 FileUtils.copyFile(file, new File("D:\\sample.png"),true);
 			 } catch(Exception e) {
 				 e.printStackTrace();
-			 }
+			 }*/
 		 GENERIC.clickByWebElement(OLB_HOME.HOME_REGISTER_BUTTON);
 		
 		 Reporter.addScreenCaptureFromPath(SCREENSHOT.getscreenshot(base.driver));
